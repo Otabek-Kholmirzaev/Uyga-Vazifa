@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using UygaVazifa.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
