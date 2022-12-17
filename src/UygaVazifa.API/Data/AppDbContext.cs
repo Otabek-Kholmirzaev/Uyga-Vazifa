@@ -2,17 +2,18 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using UygaVazifa.API.Entities;
+using UygaVazifa.API.Entities.Enums;
 
 namespace UygaVazifa.API.Data;
 
 public class AppDbContext : IdentityDbContext<User, Role, Guid>
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
     public DbSet<Homework> Homeworks { get; set; }
     public DbSet<Group> Groups { get; set; }
     public DbSet<UserGroup> UserGroups { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -23,7 +24,26 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
 
     private void SeedData(ModelBuilder builder)
     {
-        Dictionary<string, Guid> userRoleInfo = new()
+        Dictionary<string, Guid> idInformations = new()
+        {
+            { "groupId", Guid.Parse("4282f6fc-3643-4da6-ad1c-22ea8f3a8cfe") },
+            { "theFirstHomeworkId", Guid.Parse("3bf8c683-c889-405d-b37d-0d198ac8bf7c") },
+            { "theSecondHomeworkId", Guid.Parse("f26b793b-74e4-4edc-aa7c-e86e0eb5854f") },
+            { "userGroupId", Guid.Parse("8348fe88-ad5c-4a4e-b88a-adb6f8e728e8") },
+            { "theFirstCommentId", Guid.Parse("f33b569a-bf39-4ebd-a71c-ccdd495a24da") },
+            { "theSecondCommentId", Guid.Parse("1dac93a4-2cac-45c2-9d8a-c241b8ce5a37") },
+            { "theThirdCommentId", Guid.Parse("e8f4a63b-15c1-4d66-9405-d9273549c493") },
+            { "theFourthCommentId", Guid.Parse("309b1bcf-cb1d-425e-ab4e-bc16d00d3f7a") },
+            { "theFirstStudentAnswerId", Guid.Parse("b73a1b86-47b9-4553-9ad9-eb52ea9719b9") },
+            { "theSecondStudentAnswerId", Guid.Parse("5f9e5563-9682-4f03-985f-e772368cb4e9") },
+        };
+
+        Dictionary<string, string> informations = new()
+        {
+            { "groupName", "Ilmhub .NET Bootcamp" },
+        };
+
+        Dictionary<string, Guid> userRoleInformations = new()
         {
             { "adminId", Guid.Parse("23d87b67-68a6-498c-a242-2c69576c00d7") },
             { "adminRoleId", Guid.Parse("f61d882b-22b4-4588-8f73-b85c7eb319db") },
@@ -45,7 +65,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
 
         var adminEntity = new User()
         {
-            Id = userRoleInfo["adminId"],
+            Id = userRoleInformations["adminId"],
             FirstName = adminInfo["firstName"],
             LastName = adminInfo["lastName"],
             UserName = adminInfo["userName"],
@@ -71,7 +91,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
 
         var teacherEntity = new User()
         {
-            Id = userRoleInfo["teacherId"],
+            Id = userRoleInformations["teacherId"],
             FirstName = teacherInfo["firstName"],
             LastName = teacherInfo["lastName"],
             UserName = teacherInfo["userName"],
@@ -95,7 +115,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
 
         var studentEntity = new User()
         {
-            Id = userRoleInfo["studentId"],
+            Id = userRoleInformations["studentId"],
             FirstName = studentInfo["firstName"],
             LastName = studentInfo["lastName"],
             UserName = studentInfo["userName"],
@@ -114,49 +134,156 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
         #region AdminRole
         builder.Entity<Role>().HasData(new Role()
         {
-            Id = userRoleInfo["adminRoleId"],
+            Id = userRoleInformations["adminRoleId"],
             Name = "Admin",
             NormalizedName = "AdMiN".ToUpper(),
-            ConcurrencyStamp = userRoleInfo["adminRoleId"].ToString()
+            ConcurrencyStamp = userRoleInformations["adminRoleId"].ToString()
         });
         
         builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
         {
-            RoleId = userRoleInfo["adminRoleId"],
-            UserId = userRoleInfo["adminId"]
+            RoleId = userRoleInformations["adminRoleId"],
+            UserId = userRoleInformations["adminId"]
         });
         #endregion
 
         #region TeacherRole
         builder.Entity<Role>().HasData(new Role()
         {
-            Id = userRoleInfo["teacherRoleId"],
+            Id = userRoleInformations["teacherRoleId"],
             Name = "Teacher",
             NormalizedName = "Teacher".ToUpper(),
-            ConcurrencyStamp = userRoleInfo["teacherRoleId"].ToString()
+            ConcurrencyStamp = userRoleInformations["teacherRoleId"].ToString()
         });
 
         builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
         {
-            RoleId = userRoleInfo["teacherRoleId"],
-            UserId = userRoleInfo["teacherId"]
+            RoleId = userRoleInformations["teacherRoleId"],
+            UserId = userRoleInformations["teacherId"]
         });
         #endregion
 
         #region StudentRole
         builder.Entity<Role>().HasData(new Role()
         {
-            Id = userRoleInfo["studentRoleId"],
+            Id = userRoleInformations["studentRoleId"],
             Name = "Student",
             NormalizedName = "Student".ToUpper(),
-            ConcurrencyStamp = userRoleInfo["studentRoleId"].ToString()
+            ConcurrencyStamp = userRoleInformations["studentRoleId"].ToString()
         });
 
         builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
         {
-            RoleId = userRoleInfo["studentRoleId"],
-            UserId = userRoleInfo["studentId"]
+            RoleId = userRoleInformations["studentRoleId"],
+            UserId = userRoleInformations["studentId"]
         });
         #endregion
+
+        builder.Entity<Homework>().HasData(new List<Homework>()
+        {
+            new()
+            {
+                Id = idInformations["theFirstHomeworkId"],
+                Title = "Localizerdan foydalanib servislarni implement qiling.",
+                CreatedDate = DateTime.UtcNow,
+                StartDate = DateTime.UtcNow.AddDays(1),
+                EndDate = DateTime.UtcNow.AddDays(2),
+                Status = EHomeworkStatus.Created,
+                IssuerId = userRoleInformations["teacherId"],
+                GroupId = idInformations["groupId"]
+            },
+            new()
+            {
+                Id = idInformations["theSecondHomeworkId"],
+                Title = "Custom exception middleware yozing.",
+                CreatedDate = DateTime.UtcNow,
+                StartDate = DateTime.UtcNow.AddDays(2),
+                EndDate = DateTime.UtcNow.AddDays(3),
+                Status = EHomeworkStatus.Created,
+                IssuerId = userRoleInformations["teacherId"],
+                GroupId = idInformations["groupId"]
+            }
+        });
+
+        builder.Entity<UserGroup>().HasData(new List<UserGroup>()
+        {
+            new()
+            {
+                Id = idInformations["userGroupId"],
+                GroupId = idInformations["groupId"],
+                UserId = userRoleInformations["studentId"]
+            }
+        });
+
+        builder.Entity<Group>().HasData(new Group()
+        {
+            Id = idInformations["groupId"],
+            Name = informations["groupName"],
+            Status = EGroupStatus.Created,
+            TeacherId = userRoleInformations["teacherId"]
+        });
+
+        builder.Entity<Comment>().HasData(new List<Comment>()
+        {
+            new Comment()
+            {
+                Id = idInformations["theFirstCommentId"],
+                Text = "Ustoz IStringLocalizerdan foydalansam bo`ladimi?",
+                CreatedDate = DateTime.UtcNow,
+                HomeworkId = idInformations["theFirstHomeworkId"],
+                UserId = userRoleInformations["studentId"]
+            },
+
+            new Comment()
+            {
+                Id = idInformations["theSecondCommentId"],
+                Text = "Ha, albatta foydalanishing mumkin.",
+                ParentId = idInformations["theFirstCommentId"],
+                CreatedDate = DateTime.UtcNow.AddMinutes(2),
+                HomeworkId = idInformations["theFirstHomeworkId"],
+                UserId = userRoleInformations["teacherId"]
+            }
+        });
+/*
+        builder.Entity<StudentAnswer>().HasData(new List<StudentAnswer>()
+        {
+            new StudentAnswer()
+            {
+                Id = idInformations["theFirstStudentAnswerId"],
+                Files = new List<string> { "task.pdf", "task2.pdf" },
+                StudentId = userRoleInformations["studentId"],
+                Status = EStudentAnswerStatus.New
+            },
+            //Ustoz check qilgandagi answer
+            new StudentAnswer()
+            {
+                Id = idInformations["theSecondStudentAnswerId"],
+                StudentId = userRoleInformations["studentId"],
+                Status = EStudentAnswerStatus.Old,
+                Result = EResultStudentAnswer.Rejected
+            }
+        });*/
+        
+        builder.Entity<Comment>().HasData(new List<Comment>()
+        {
+            new()
+            {
+                Id = idInformations["theThirdCommentId"],
+                Text = "Noto`g`ri ishlangan.",
+                CreatedDate = DateTime.UtcNow,
+                HomeworkId = idInformations["theFirstHomeworkId"],
+                UserId = userRoleInformations["studentId"]
+            },
+            new()
+            {
+                Id = idInformations["theFourthCommentId"],
+                Text = "Nimasi noto`g`ri ishlangan ustoz?.",
+                ParentId = idInformations["theThirdCommentId"],
+                CreatedDate = DateTime.UtcNow.AddSeconds(20),
+                HomeworkId = idInformations["theFirstHomeworkId"],
+                UserId = userRoleInformations["studentId"]
+            }
+        });
+
     }
 }

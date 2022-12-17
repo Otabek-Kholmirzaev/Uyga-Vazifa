@@ -16,7 +16,7 @@ public class Group
     [ForeignKey(nameof(TeacherId))]
     public virtual User? Teacher { get; set; }
 
-    public Guid AssistantId { get; set; }
+    public Guid? AssistantId { get; set; }
 
     [ForeignKey(nameof(AssistantId))]
     public virtual User? Assistant { get; set; }
