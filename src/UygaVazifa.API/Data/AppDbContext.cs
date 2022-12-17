@@ -8,6 +8,12 @@ namespace UygaVazifa.API.Data;
 public class AppDbContext : IdentityDbContext<User, Role, Guid>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
+    public DbSet<Homework> Homeworks { get; set; }
+    public DbSet<Group> Groups { get; set; }
+    public DbSet<UserGroup> UserGroups { get; set; }
+    public DbSet<Comment> Comments { get; set; }
+    public DbSet<StudentAnswer> StudentAnswers { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

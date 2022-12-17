@@ -8,6 +8,7 @@ public class Homework
     public Guid Id { get; set; }
     public string? Title { get; set; }
     public string? Description { get; set; }
+    public List<string>? Files { get; set; }
     public DateTime? CreatedDate { get; set; } 
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UygaVazifa.API.Data;
@@ -12,9 +13,10 @@ using UygaVazifa.API.Data;
 namespace UygaVazifa.API.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221217213622_TablesCreate")]
+    partial class TablesCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,9 +224,6 @@ namespace UygaVazifa.API.Data.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<List<string>>("Files")
-                        .HasColumnType("text[]");
-
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uuid");
 
@@ -410,7 +409,7 @@ namespace UygaVazifa.API.Data.Migrations
                         {
                             Id = new Guid("23d87b67-68a6-498c-a242-2c69576c00d7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8d574049-c23a-4021-a0b0-abcfca39b0ed",
+                            ConcurrencyStamp = "2d1f19f6-705e-4dfc-867f-c1d87948f948",
                             Email = "johndoe@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "John",
@@ -418,7 +417,7 @@ namespace UygaVazifa.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JOHNDOE@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE/DKoXiQNnPStNC7mOepbKisRIQiEiHESwnjTIqUawck1f3S0URojoTqqrn6oS0lg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJjevIL0Rrj/NS6pw8iolMGN/viOTEt7XV2IsmbvZf3p2MS8va4j+j8eC05MvuKRQA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -427,7 +426,7 @@ namespace UygaVazifa.API.Data.Migrations
                         {
                             Id = new Guid("f73e4f1d-be15-4eab-a1ba-92747d075b54"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d3aa8311-c0cb-4874-8fb2-e99ac15dab81",
+                            ConcurrencyStamp = "5e810d56-e2fa-4758-a585-bcefe2b4fffb",
                             Email = "annasmith@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Anna",
@@ -435,7 +434,7 @@ namespace UygaVazifa.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ANNASMITH@GMAIL.COM",
                             NormalizedUserName = "TEACHER",
-                            PasswordHash = "AQAAAAEAACcQAAAAELtCTE3q2UcFK0EOcnEcJc5FglWX4ba3PAojaKQh70WMsde36CmlTu5TK1TsDljzZQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMtKe/k2AEJaipqtX9pZ4xf20r9GLx1mZBkTgA51bxfGbDvg+Ak18/j39u6bFuazJg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "teacher"
@@ -444,7 +443,7 @@ namespace UygaVazifa.API.Data.Migrations
                         {
                             Id = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7d3d60c0-5fb4-475b-a974-464074d49f09",
+                            ConcurrencyStamp = "ad842ac9-90ae-4410-a880-77977ca9bc47",
                             Email = "jeffreyway@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Jeffrey",
@@ -452,7 +451,7 @@ namespace UygaVazifa.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JEFFREYWAY@GMAIL.COM",
                             NormalizedUserName = "STUDENT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP3LOxb663UWf7CXb7nJNIYNC6J/jHs8mtVg1Vw7z//oU+K50ZHqp7M6aV01fHtS3w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJtneFQ8uK5OmsZAm6jJYTJtDuQtqM/uiK4e3U5A3tSZyTq7bHnxSfKaKMPCHaFTRg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "student"
