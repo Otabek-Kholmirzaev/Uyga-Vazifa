@@ -12,7 +12,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
     {
         base.OnModelCreating(builder);
 
-        SeedData(builder);
+        SeedData(builder);  
     }
 
     private void SeedData(ModelBuilder builder)
@@ -34,7 +34,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
 
         var appUser = new User()
         {
-            Id = Guid.NewGuid(),
+            Id = userRoleInfo["adminId"],
             FirstName = adminInfo["firstName"],
             LastName = adminInfo["lastName"],
             UserName = adminInfo["userName"],
@@ -67,10 +67,10 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
                 NormalizedName = roleName.ToUpper()
             });
 
-        builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+        builder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
         {
-            RoleId = userRoleInfo["roleId"].ToString(),
-            UserId = userRoleInfo["adminId"].ToString()
+            RoleId = userRoleInfo["roleId"],
+            UserId = userRoleInfo["adminId"]
         });
     }
 }
