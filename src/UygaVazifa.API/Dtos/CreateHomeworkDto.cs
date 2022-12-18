@@ -9,7 +9,8 @@ public class CreateHomeworkDto
     public string? Title { get; set; }
     public string? Description { get; set; }
     public List<IFormFile>? Files { get; set; }
+    [Required]
     public DateTime? StartDate { get; set; }
+    [Required]
     public DateTime? EndDate { get; set; }
-    public EGroupStatus Status { get; set; }
 }
