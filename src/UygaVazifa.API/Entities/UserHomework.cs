@@ -2,7 +2,7 @@
 
 namespace UygaVazifa.API.Entities;
 
-public class UserGroup
+public class UserHomework
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
@@ -10,9 +10,8 @@ public class UserGroup
     [ForeignKey(nameof(UserId))]
     public virtual User? User { get; set; }
 
-    public Guid GroupId { get; set; }
+    public Guid HomeworkId { get; set; }
 
-    [ForeignKey(nameof(GroupId))]
-    public virtual Group? Group { get; set; }
-
+    [ForeignKey(nameof(HomeworkId))]
+    public virtual Homework? Homework { get; set; }
 }

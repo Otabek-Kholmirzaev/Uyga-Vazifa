@@ -8,4 +8,5 @@ public class User : IdentityUser<Guid>
     public string? LastName { get; set; }
 
     public virtual List<UserGroup>? Groups { get; set; }
+    public virtual List<UserHomework>? UserHomeworks { get; set; }
 }

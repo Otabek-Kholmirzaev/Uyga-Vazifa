@@ -24,5 +24,6 @@ public class Homework
     [ForeignKey(nameof(IssuerId))]
     public virtual User? Issuer { get; set; }
 
-    public List<StudentAnswer>? StudentAnswers { get; set; }
+    public virtual List<StudentAnswer>? StudentAnswers { get; set; }
+    public virtual List<UserHomework>? UserHomeworks { get; set; }
 }
