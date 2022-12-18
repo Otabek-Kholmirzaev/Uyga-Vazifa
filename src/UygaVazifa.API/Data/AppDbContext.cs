@@ -15,6 +15,11 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
