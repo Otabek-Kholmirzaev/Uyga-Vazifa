@@ -22,7 +22,7 @@ public class GroupService : IGroupService
     {
         var groups = (await _groupsRepository.GetAll()
             .ToPagedListAsync(paginationParams)).ToList();
-        if (groups.Count >= 0)
+        if (groups.Count == 0)
             return new("There is no any pages");
         
         return new(true) { Data = groups.Adapt<List<GroupResponseModel>>() };
