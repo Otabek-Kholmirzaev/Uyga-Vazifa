@@ -51,4 +51,8 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
 
         return entry.Entity;
     }
+
+    public int Save() => _context.SaveChanges();
+
+    public async Task<int> SaveAsync() => await _context.SaveChangesAsync();
 }

@@ -10,4 +10,6 @@ public interface IGenericRepository<TEntity> where TEntity : class
     Task<TEntity> AddAsync(TEntity entity);
     Task<TEntity> Remove(TEntity entity);
     Task<TEntity> Update(TEntity entity);
+    int Save();
+    Task<int> SaveAsync();
 }
