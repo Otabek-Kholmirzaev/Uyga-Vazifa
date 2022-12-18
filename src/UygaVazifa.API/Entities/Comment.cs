@@ -14,10 +14,10 @@ public class Comment
 
     public virtual List<Comment>? Children { get; set; }
 
-    public Guid? HomeworkId { get; set; }
+    public Guid? StudentAnswerId { get; set; }
 
-    [ForeignKey(nameof(HomeworkId))]
-    public virtual Homework? Homework { get; set; }
+    [ForeignKey(nameof(StudentAnswerId))]
+    public virtual StudentAnswer? StudentAnswer { get; set; }
 
     public Guid UserId { get; set; }
     [ForeignKey(nameof(UserId))]

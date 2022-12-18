@@ -223,6 +223,27 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
             TeacherId = userRoleInformations["teacherId"]
         });
 
+        builder.Entity<StudentAnswer>().HasData(new List<StudentAnswer>()
+        {
+            new StudentAnswer()
+            {
+                Id = idInformations["theFirstStudentAnswerId"],
+                File = "file1.pdf",
+                StudentId = userRoleInformations["studentId"],
+                Status = EStudentAnswerStatus.New,
+                HomeworkId = idInformations["theFirstHomeworkId"]
+            },
+            //Ustoz check qilgandagi answer
+            new StudentAnswer()
+            {
+                Id = idInformations["theSecondStudentAnswerId"],
+                StudentId = userRoleInformations["studentId"],
+                Status = EStudentAnswerStatus.Old,
+                Result = EResultStudentAnswer.Rejected,
+                HomeworkId = idInformations["theFirstHomeworkId"]
+            }
+        });
+
         builder.Entity<Comment>().HasData(new List<Comment>()
         {
             new Comment()
@@ -230,7 +251,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
                 Id = idInformations["theFirstCommentId"],
                 Text = "Ustoz IStringLocalizerdan foydalansam bo`ladimi?",
                 CreatedDate = DateTime.UtcNow,
-                HomeworkId = idInformations["theFirstHomeworkId"],
+                StudentAnswerId = idInformations["theFirstStudentAnswerId"],
                 UserId = userRoleInformations["studentId"]
             },
 
@@ -240,30 +261,11 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
                 Text = "Ha, albatta foydalanishing mumkin.",
                 ParentId = idInformations["theFirstCommentId"],
                 CreatedDate = DateTime.UtcNow.AddMinutes(2),
-                HomeworkId = idInformations["theFirstHomeworkId"],
+                StudentAnswerId = idInformations["theFirstStudentAnswerId"],
                 UserId = userRoleInformations["teacherId"]
             }
         });
-/*
-        builder.Entity<StudentAnswer>().HasData(new List<StudentAnswer>()
-        {
-            new StudentAnswer()
-            {
-                Id = idInformations["theFirstStudentAnswerId"],
-                Files = new List<string> { "task.pdf", "task2.pdf" },
-                StudentId = userRoleInformations["studentId"],
-                Status = EStudentAnswerStatus.New
-            },
-            //Ustoz check qilgandagi answer
-            new StudentAnswer()
-            {
-                Id = idInformations["theSecondStudentAnswerId"],
-                StudentId = userRoleInformations["studentId"],
-                Status = EStudentAnswerStatus.Old,
-                Result = EResultStudentAnswer.Rejected
-            }
-        });*/
-        
+
         builder.Entity<Comment>().HasData(new List<Comment>()
         {
             new()
@@ -271,7 +273,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
                 Id = idInformations["theThirdCommentId"],
                 Text = "Noto`g`ri ishlangan.",
                 CreatedDate = DateTime.UtcNow,
-                HomeworkId = idInformations["theFirstHomeworkId"],
+                StudentAnswerId = idInformations["theFirstStudentAnswerId"],
                 UserId = userRoleInformations["studentId"]
             },
             new()
@@ -280,7 +282,7 @@ public class AppDbContext : IdentityDbContext<User, Role, Guid>
                 Text = "Nimasi noto`g`ri ishlangan ustoz?.",
                 ParentId = idInformations["theThirdCommentId"],
                 CreatedDate = DateTime.UtcNow.AddSeconds(20),
-                HomeworkId = idInformations["theFirstHomeworkId"],
+                StudentAnswerId = idInformations["theFirstStudentAnswerId"],
                 UserId = userRoleInformations["studentId"]
             }
         });
