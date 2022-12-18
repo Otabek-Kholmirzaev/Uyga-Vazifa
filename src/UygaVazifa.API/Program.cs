@@ -1,3 +1,4 @@
+using FurnitureShop.Common.Helpers;
 using Microsoft.EntityFrameworkCore;
 using UygaVazifa.API.Data;
 using UygaVazifa.API.Entities;
@@ -5,6 +6,7 @@ using UygaVazifa.API.Entities;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -24,6 +26,10 @@ builder.Services.AddIdentity<User, Role>(options =>
     .AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
+
+if (((IApplicationBuilder)app).ApplicationServices.GetService<IHttpContextAccessor>() != null)
+    HttpContextHelper.Accessor =
+        ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IHttpContextAccessor>();
 
 if (app.Environment.IsDevelopment())
 {
