@@ -4,6 +4,7 @@ using UygaVazifa.API.Data;
 using UygaVazifa.API.Entities;
 using UygaVazifa.API.Repositories;
 using UygaVazifa.API.Repositories.Interfaces;
+using UygaVazifa.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IGenericRepository<Comment>, GenericRepository<Commen
 builder.Services.AddScoped<IGenericRepository<Group>, GenericRepository<Group>>();
 builder.Services.AddScoped<IGenericRepository<StudentAnswer>, GenericRepository<StudentAnswer>>();
 builder.Services.AddScoped<IGenericRepository<UserGroup>, GenericRepository<UserGroup>>();
+builder.Services.AddScoped<IGroupService, GroupService>();
 
 builder.Services.AddIdentity<User, Role>(options =>
     {

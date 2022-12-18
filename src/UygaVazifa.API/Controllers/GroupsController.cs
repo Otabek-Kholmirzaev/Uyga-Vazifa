@@ -17,12 +17,9 @@ public partial class GroupsController : ControllerBase
 
     private readonly IGroupService _groupService;
 
-    private readonly IHomeworksService _homeworkService;
-
-    public GroupsController(IGroupService groupService, IHomeworksService homeworkService)
+    public GroupsController(IGroupService groupService)
     {
         _groupService = groupService;
-        _homeworkService = homeworkService;
     }
 
     [HttpGet]
@@ -52,8 +49,8 @@ public partial class GroupsController : ControllerBase
         
         return HandleResultResponseModel(createdGroupResult);
     }
-
-    [HttpPut("groupId:guid")]
+    
+    [HttpPut("{groupId:guid}")]
     public async Task<IActionResult> UpdateGroup(Guid groupId, [FromBody] UpdateGroupDto dtoModel)
     {
         if (!ModelState.IsValid)
@@ -71,7 +68,7 @@ public partial class GroupsController : ControllerBase
 
         return HandleResultResponseModel(deletedGroupResult);
     }
-
+    [NonAction]
     private ObjectResult HandleResultResponseModel(Result existingObjectResult)
     {
         if(!existingObjectResult.IsSuccess)
