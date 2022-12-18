@@ -18,6 +18,7 @@ public class Result
 public class Result<T> : Result
 {
     public T? Data { get; set; }
+    public int? ErrorCode { get; set; }
     public Result(bool isSuccess) : base(isSuccess) { }
     public Result(string? errorMessage) : base(errorMessage) { }
     public Result(bool isSuccess, string? errorMessage) : base(isSuccess, errorMessage) { }
