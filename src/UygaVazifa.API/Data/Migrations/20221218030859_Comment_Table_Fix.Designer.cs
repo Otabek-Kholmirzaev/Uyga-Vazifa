@@ -13,8 +13,8 @@ using UygaVazifa.API.Data;
 namespace UygaVazifa.API.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221217224958_GroupSeed_Data_Initial")]
-    partial class GroupSeed_Data_Initial
+    [Migration("20221218030859_Comment_Table_Fix")]
+    partial class Comment_Table_Fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,9 +154,6 @@ namespace UygaVazifa.API.Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("HomeworkId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uuid");
 
@@ -171,8 +168,6 @@ namespace UygaVazifa.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HomeworkId");
-
                     b.HasIndex("ParentId");
 
                     b.HasIndex("StudentAnswerId");
@@ -180,6 +175,42 @@ namespace UygaVazifa.API.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("f33b569a-bf39-4ebd-a71c-ccdd495a24da"),
+                            CreatedDate = new DateTime(2022, 12, 18, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3871),
+                            StudentAnswerId = new Guid("b73a1b86-47b9-4553-9ad9-eb52ea9719b9"),
+                            Text = "Ustoz IStringLocalizerdan foydalansam bo`ladimi?",
+                            UserId = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f")
+                        },
+                        new
+                        {
+                            Id = new Guid("1dac93a4-2cac-45c2-9d8a-c241b8ce5a37"),
+                            CreatedDate = new DateTime(2022, 12, 18, 3, 10, 58, 344, DateTimeKind.Utc).AddTicks(3879),
+                            ParentId = new Guid("f33b569a-bf39-4ebd-a71c-ccdd495a24da"),
+                            StudentAnswerId = new Guid("b73a1b86-47b9-4553-9ad9-eb52ea9719b9"),
+                            Text = "Ha, albatta foydalanishing mumkin.",
+                            UserId = new Guid("f73e4f1d-be15-4eab-a1ba-92747d075b54")
+                        },
+                        new
+                        {
+                            Id = new Guid("e8f4a63b-15c1-4d66-9405-d9273549c493"),
+                            CreatedDate = new DateTime(2022, 12, 18, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(4001),
+                            StudentAnswerId = new Guid("b73a1b86-47b9-4553-9ad9-eb52ea9719b9"),
+                            Text = "Noto`g`ri ishlangan.",
+                            UserId = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f")
+                        },
+                        new
+                        {
+                            Id = new Guid("309b1bcf-cb1d-425e-ab4e-bc16d00d3f7a"),
+                            CreatedDate = new DateTime(2022, 12, 18, 3, 9, 18, 344, DateTimeKind.Utc).AddTicks(4008),
+                            ParentId = new Guid("e8f4a63b-15c1-4d66-9405-d9273549c493"),
+                            StudentAnswerId = new Guid("b73a1b86-47b9-4553-9ad9-eb52ea9719b9"),
+                            Text = "Nimasi noto`g`ri ishlangan ustoz?.",
+                            UserId = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f")
+                        });
                 });
 
             modelBuilder.Entity("UygaVazifa.API.Entities.Group", b =>
@@ -263,22 +294,22 @@ namespace UygaVazifa.API.Data.Migrations
                         new
                         {
                             Id = new Guid("3bf8c683-c889-405d-b37d-0d198ac8bf7c"),
-                            CreatedDate = new DateTime(2022, 12, 17, 22, 49, 58, 145, DateTimeKind.Utc).AddTicks(4371),
-                            EndDate = new DateTime(2022, 12, 19, 22, 49, 58, 145, DateTimeKind.Utc).AddTicks(4385),
+                            CreatedDate = new DateTime(2022, 12, 18, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3682),
+                            EndDate = new DateTime(2022, 12, 20, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3699),
                             GroupId = new Guid("4282f6fc-3643-4da6-ad1c-22ea8f3a8cfe"),
                             IssuerId = new Guid("f73e4f1d-be15-4eab-a1ba-92747d075b54"),
-                            StartDate = new DateTime(2022, 12, 18, 22, 49, 58, 145, DateTimeKind.Utc).AddTicks(4376),
+                            StartDate = new DateTime(2022, 12, 19, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3687),
                             Status = 0,
                             Title = "Localizerdan foydalanib servislarni implement qiling."
                         },
                         new
                         {
                             Id = new Guid("f26b793b-74e4-4edc-aa7c-e86e0eb5854f"),
-                            CreatedDate = new DateTime(2022, 12, 17, 22, 49, 58, 145, DateTimeKind.Utc).AddTicks(4397),
-                            EndDate = new DateTime(2022, 12, 20, 22, 49, 58, 145, DateTimeKind.Utc).AddTicks(4399),
+                            CreatedDate = new DateTime(2022, 12, 18, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3710),
+                            EndDate = new DateTime(2022, 12, 21, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3713),
                             GroupId = new Guid("4282f6fc-3643-4da6-ad1c-22ea8f3a8cfe"),
                             IssuerId = new Guid("f73e4f1d-be15-4eab-a1ba-92747d075b54"),
-                            StartDate = new DateTime(2022, 12, 19, 22, 49, 58, 145, DateTimeKind.Utc).AddTicks(4398),
+                            StartDate = new DateTime(2022, 12, 20, 3, 8, 58, 344, DateTimeKind.Utc).AddTicks(3711),
                             Status = 0,
                             Title = "Custom exception middleware yozing."
                         });
@@ -340,11 +371,11 @@ namespace UygaVazifa.API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("CommentId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("CommentType")
+                        .HasColumnType("integer");
 
-                    b.Property<List<string>>("Files")
-                        .HasColumnType("text[]");
+                    b.Property<string>("File")
+                        .HasColumnType("text");
 
                     b.Property<Guid?>("HomeworkId")
                         .HasColumnType("uuid");
@@ -360,13 +391,31 @@ namespace UygaVazifa.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CommentId");
-
                     b.HasIndex("HomeworkId");
 
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentAnswers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b73a1b86-47b9-4553-9ad9-eb52ea9719b9"),
+                            CommentType = 0,
+                            File = "file1.pdf",
+                            HomeworkId = new Guid("3bf8c683-c889-405d-b37d-0d198ac8bf7c"),
+                            Status = 0,
+                            StudentId = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f")
+                        },
+                        new
+                        {
+                            Id = new Guid("5f9e5563-9682-4f03-985f-e772368cb4e9"),
+                            CommentType = 0,
+                            HomeworkId = new Guid("3bf8c683-c889-405d-b37d-0d198ac8bf7c"),
+                            Result = 0,
+                            Status = 1,
+                            StudentId = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f")
+                        });
                 });
 
             modelBuilder.Entity("UygaVazifa.API.Entities.User", b =>
@@ -445,7 +494,7 @@ namespace UygaVazifa.API.Data.Migrations
                         {
                             Id = new Guid("23d87b67-68a6-498c-a242-2c69576c00d7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eb5aeab3-375e-41e6-a020-6c01b93395a6",
+                            ConcurrencyStamp = "c0293a59-26ee-47c8-90e6-94cad259bc33",
                             Email = "johndoe@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "John",
@@ -453,7 +502,7 @@ namespace UygaVazifa.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JOHNDOE@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPkMCuunQt+TbTKXSe8q0GS7Tau9sIp8JkvMzt6WQTXYHbV31YKQ/PTt6fcLbuMrvw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOgV1B8IfCf//JoyEV9egsjRIbONYOyE2/4kub6iO72gOICLI0AjQQPgyJjwAuzEIQ==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -462,7 +511,7 @@ namespace UygaVazifa.API.Data.Migrations
                         {
                             Id = new Guid("f73e4f1d-be15-4eab-a1ba-92747d075b54"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e99f11f-7e0a-42c5-ac75-60e59b2c40fb",
+                            ConcurrencyStamp = "c960ac7d-d975-4c75-b051-2dbdffad2f3f",
                             Email = "annasmith@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Anna",
@@ -470,7 +519,7 @@ namespace UygaVazifa.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ANNASMITH@GMAIL.COM",
                             NormalizedUserName = "TEACHER",
-                            PasswordHash = "AQAAAAEAACcQAAAAENJ3upNgIYOoEKeVbAJvgTy0f1bliDIDecyNewDzvxI733KUrzTZ0m+LcMQGtRTWjQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF4QDJ65V2r6yauTpVqcR+FJqvTuyGR7ProzMzKCP8GHgEGMRYX0j/QKZ8+T2x5u+A==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "teacher"
@@ -479,7 +528,7 @@ namespace UygaVazifa.API.Data.Migrations
                         {
                             Id = new Guid("12431733-4e80-439b-b5ff-86e1f8c6f77f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "082b92b1-5edf-4d35-9b05-a35ff85c12ed",
+                            ConcurrencyStamp = "b06deeb5-5429-4989-b747-6525102ae2ca",
                             Email = "jeffreyway@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Jeffrey",
@@ -487,7 +536,7 @@ namespace UygaVazifa.API.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JEFFREYWAY@GMAIL.COM",
                             NormalizedUserName = "STUDENT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAnQJ+rJ0xGV0o1fudLSsxAf+a0U3YLUe6zFyV830AgqKH+4QAutpP4npvAMEes/ew==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEKWC3JVNI8M4cM/uRGE4gUmRLsqGxRBNGu2FmrcNur2hDYgvIEUy2zu6i1/BeoHOw==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "student"
@@ -576,16 +625,12 @@ namespace UygaVazifa.API.Data.Migrations
 
             modelBuilder.Entity("UygaVazifa.API.Entities.Comment", b =>
                 {
-                    b.HasOne("UygaVazifa.API.Entities.Homework", "Homework")
-                        .WithMany()
-                        .HasForeignKey("HomeworkId");
-
                     b.HasOne("UygaVazifa.API.Entities.Comment", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
 
-                    b.HasOne("UygaVazifa.API.Entities.StudentAnswer", null)
-                        .WithMany("ResultComments")
+                    b.HasOne("UygaVazifa.API.Entities.StudentAnswer", "StudentAnswer")
+                        .WithMany("Comments")
                         .HasForeignKey("StudentAnswerId");
 
                     b.HasOne("UygaVazifa.API.Entities.User", "User")
@@ -594,9 +639,9 @@ namespace UygaVazifa.API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Homework");
-
                     b.Navigation("Parent");
+
+                    b.Navigation("StudentAnswer");
 
                     b.Navigation("User");
                 });
@@ -639,11 +684,7 @@ namespace UygaVazifa.API.Data.Migrations
 
             modelBuilder.Entity("UygaVazifa.API.Entities.StudentAnswer", b =>
                 {
-                    b.HasOne("UygaVazifa.API.Entities.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId");
-
-                    b.HasOne("UygaVazifa.API.Entities.Homework", null)
+                    b.HasOne("UygaVazifa.API.Entities.Homework", "Homework")
                         .WithMany("StudentAnswers")
                         .HasForeignKey("HomeworkId");
 
@@ -653,7 +694,7 @@ namespace UygaVazifa.API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Comment");
+                    b.Navigation("Homework");
 
                     b.Navigation("Student");
                 });
@@ -696,7 +737,7 @@ namespace UygaVazifa.API.Data.Migrations
 
             modelBuilder.Entity("UygaVazifa.API.Entities.StudentAnswer", b =>
                 {
-                    b.Navigation("ResultComments");
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("UygaVazifa.API.Entities.User", b =>
